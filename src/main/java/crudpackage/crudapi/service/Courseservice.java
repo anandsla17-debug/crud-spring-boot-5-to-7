@@ -1,10 +1,10 @@
 package crudpackage.crudapi.service;
 
-import crudpackage.crudapi.dao.CourseDAO;
+import crudpackage.crudapi.dto.CourseDTO;
 
 import java.util.List;
 
 public interface Courseservice {
-    String CourseAddlogic(CourseDAO courseDAO);
-    List<CourseDAO> Coursedisplayall();
+    String CourseAddlogic(CourseDTO courseDTO);
+    List<CourseDTO> Coursedisplayall();
 }

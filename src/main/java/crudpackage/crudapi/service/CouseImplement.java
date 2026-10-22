@@ -1,6 +1,6 @@
 package crudpackage.crudapi.service;
 
-import crudpackage.crudapi.dao.CourseDAO;
+import crudpackage.crudapi.dto.CourseDTO;
 import crudpackage.crudapi.model.Coursemodel;
 import crudpackage.crudapi.repository.CourseRepostiory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,21 +16,21 @@ public class CouseImplement implements Courseservice {
     private CourseRepostiory courseRepostiory;// query logic
 
     @Override
-    public String CourseAddlogic(CourseDAO courseDAO){
-        Coursemodel savetheinfo=new Coursemodel(courseDAO.getSname()
-                ,courseDAO.getCourseduration(),courseDAO.getCoursename(),
-                courseDAO.getCoursetime(), courseDAO.getDays(),courseDAO.getPhoneno());
+    public String CourseAddlogic(CourseDTO courseDTO){
+        Coursemodel savetheinfo=new Coursemodel(courseDTO.getSname()
+                , courseDTO.getCourseduration(), courseDTO.getCoursename(),
+                courseDTO.getCoursetime(), courseDTO.getDays(), courseDTO.getPhoneno());
         courseRepostiory.save(savetheinfo);
         return "data stored successfully";
 
     }
 
     @Override
-    public List<CourseDAO> Coursedisplayall(){
+    public List<CourseDTO> Coursedisplayall(){
         List<Coursemodel> getdata=courseRepostiory.findAll();
-        List<CourseDAO> transfer= new ArrayList<>();
+        List<CourseDTO> transfer= new ArrayList<>();
         for(Coursemodel getdataall:getdata ){
-            CourseDAO set=new CourseDAO();
+            CourseDTO set=new CourseDTO();
             set.setStudentid(getdataall.getStudentid());
             set.setSname(getdataall.getSname());
             set.setCourseduration(getdataall.getCourseduration());
@@ -41,7 +41,9 @@ public class CouseImplement implements Courseservice {
             transfer.add(set);
 //            System.out.println(getdataall.getCoursename()+getdataall.getStudentid()+getdataall.getSname());
 
+
         }
+
 
         return transfer;
     }

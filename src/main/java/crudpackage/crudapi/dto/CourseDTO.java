@@ -1,8 +1,8 @@
-package crudpackage.crudapi.dao;
+package crudpackage.crudapi.dto;
 
 
 
-public class CourseDAO {
+public class CourseDTO {
     private int studentid;
 
 
@@ -18,7 +18,7 @@ public class CourseDAO {
 
     private long phoneno;
 
-    public CourseDAO(String sname, String courseduration, String coursename, String coursetime, int days, long phoneno) {
+    public CourseDTO(String sname, String courseduration, String coursename, String coursetime, int days, long phoneno) {
         this.sname = sname;
         this.courseduration = courseduration;
         this.coursename = coursename;
@@ -27,7 +27,7 @@ public class CourseDAO {
         this.phoneno = phoneno;
     }
 
-public CourseDAO(){
+public CourseDTO(){
 
 }
     public int getStudentid() {

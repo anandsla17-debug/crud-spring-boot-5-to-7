@@ -1,7 +1,7 @@
 package crudpackage.crudapi.controller;
 
 
-import crudpackage.crudapi.dao.CourseDAO;
+import crudpackage.crudapi.dto.CourseDTO;
 import crudpackage.crudapi.service.Courseservice;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -18,13 +18,13 @@ public class CourseController {
 
 
     @PostMapping("/addcourse")
-    public String CourseApi(@RequestBody CourseDAO courseDAO){
-       return courseservice.CourseAddlogic(courseDAO);
+    public String CourseApi(@RequestBody CourseDTO courseDTO){
+       return courseservice.CourseAddlogic(courseDTO);
 
     }
 
     @GetMapping("/viewCourse")
-    public List<CourseDAO> Displayall(){
+    public List<CourseDTO> Displayall(){
        return courseservice.Coursedisplayall();
     }
 }
