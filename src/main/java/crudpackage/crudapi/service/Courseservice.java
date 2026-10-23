@@ -5,6 +5,8 @@ import crudpackage.crudapi.dto.CourseDTO;
 import java.util.List;
 
 public interface Courseservice {
-    String CourseAddlogic(CourseDTO courseDTO);
-    List<CourseDTO> Coursedisplayall();
+   public String CourseAddlogic(CourseDTO courseDTO);
+  public  List<CourseDTO> Coursedisplayall();
+    public String Updatecouselogic(CourseDTO courseDTO);
+    public String Deletestudentlogic(int studentid);
 }

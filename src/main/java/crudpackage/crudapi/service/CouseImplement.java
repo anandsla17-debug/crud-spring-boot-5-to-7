@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class CouseImplement implements Courseservice {
@@ -47,4 +48,40 @@ public class CouseImplement implements Courseservice {
 
         return transfer;
     }
+
+
+    @Override
+    public String Updatecouselogic(CourseDTO courseDTO){
+         Optional<Coursemodel> coursemodel=courseRepostiory.findById(courseDTO.getStudentid());
+
+         if(coursemodel.isPresent()){
+             System.out.println(coursemodel.get().getCoursename());
+             Coursemodel savetheupdate=coursemodel.get();
+             savetheupdate.setSname(courseDTO.getSname());
+             savetheupdate.setCoursename(courseDTO.getCoursename());
+             savetheupdate.setCourseduration(courseDTO.getCourseduration());
+             savetheupdate.setDays(courseDTO.getDays());
+             savetheupdate.setPhoneno(courseDTO.getPhoneno());
+             savetheupdate.setCoursetime(courseDTO.getCoursetime());
+
+             courseRepostiory.save(savetheupdate);
+             return " student id:"+courseDTO.getStudentid()+" update successfully";
+         }else {
+
+             return "student id:"+courseDTO.getStudentid()+"it not present in the database";
+         }
+    }
+
+    @Override
+    public String Deletestudentlogic(int studentid){
+        Optional<Coursemodel> getdata=courseRepostiory.findById(studentid);// select * from course where studentid=?
+        if(getdata.isPresent()){
+            courseRepostiory.deleteByStudentid(studentid);// delete * from course where studentid=?;
+            return "student id:"+studentid+" is deleted";
+        }else {
+            return "student id:"+studentid+" is not present in database";
+        }
+    }
+
+
 }
