@@ -26,9 +26,17 @@ public class AdminServiceimpl implements AdminService{
     }
 
     @Override
-    public boolean adminloginlogic(AdminDTO adminDTO){
-        Optional<Adminmodel>  check= adminRespostiory.findByAdminidAndAdminpassword(adminDTO.getAdminid(),adminDTO.getAdminpassword());
-         return check.isPresent();
+    public String adminloginlogic(AdminDTO adminDTO){
+     Adminmodel adminmodel = adminRespostiory.findByAdminid(adminDTO.getAdminid());
+        System.out.println(securityconfig.Ecry().matches(adminDTO.getAdminpassword(),adminmodel.getAdminpassword()));
+        if(securityconfig.Ecry().matches(adminDTO.getAdminpassword(),adminmodel.getAdminpassword())){
+            return "login successfully";
+        }else {
+            return "login failed";
+        }
+
+//        Optional<Adminmodel>  check= adminRespostiory.findByAdminidAndAdminpassword(adminDTO.getAdminid(),adminDTO.getAdminpassword());
+//         return check.isPresent();
     }
 
 

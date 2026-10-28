@@ -19,7 +19,8 @@ public class Securityconfig {
     public SecurityFilterChain securityFilterChain(HttpSecurity http){
 http.csrf(csrf->csrf.disable()).authorizeHttpRequests(auth->
         auth.requestMatchers("/courseapi/viewCourse").authenticated()
-                .requestMatchers("/admin/reg").authenticated())
+                .requestMatchers("/admin/reg").hasRole("ADMIN")
+                .anyRequest().permitAll())
         .httpBasic(basic->{})
         .formLogin(form->form.permitAll());
 return http.build();
@@ -31,7 +32,11 @@ return http.build();
         UserDetails user1= User.withUsername("anand")
                 .password(Ecry().encode("123"))
                 .roles("ADMIN").build();
-        return new InMemoryUserDetailsManager(user1);
+        UserDetails user2=User.withUsername("max")
+                .password(Ecry().encode("123456"))
+                .roles("USER").build();
+
+        return new InMemoryUserDetailsManager(user1,user2);
     }
 
     @Bean

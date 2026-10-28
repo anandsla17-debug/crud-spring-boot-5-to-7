@@ -12,4 +12,5 @@ public interface AdminRespostiory extends JpaRepository<Adminmodel,Integer> {
     Adminmodel findByAdminid(String adminid);
     //select * from admin where adminid=?
 
+
 }

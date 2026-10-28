@@ -20,12 +20,14 @@ public class AdminController {
     @PostMapping("/login")
     public ResponseEntity<String> AdminLogin(@RequestBody AdminDTO adminDTO){
 
-        boolean result =adminService.adminloginlogic(adminDTO);
-        if(result){
-            return ResponseEntity.ok("login successfully");
-        }else {
-            return  ResponseEntity.ok("login failed");
-        }
+       String result =adminService.adminloginlogic(adminDTO);
+       return ResponseEntity.ok(result);
+//        if(result){
+//            return ResponseEntity.ok("login successfully");
+//        }else {
+//            return  ResponseEntity.ok("login failed");
+//        }
+
     }
 
     @GetMapping("/adminview/{adminid}")
