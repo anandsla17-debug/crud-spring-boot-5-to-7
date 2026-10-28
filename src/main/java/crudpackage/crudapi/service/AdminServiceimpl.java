@@ -1,5 +1,6 @@
 package crudpackage.crudapi.service;
 
+import crudpackage.crudapi.Springconfig.Securityconfig;
 import crudpackage.crudapi.dto.AdminDTO;
 import crudpackage.crudapi.model.Adminmodel;
 import crudpackage.crudapi.repository.AdminRespostiory;
@@ -15,9 +16,11 @@ public class AdminServiceimpl implements AdminService{
     @Autowired
     private AdminRespostiory adminRespostiory;
 
+    @Autowired
+    private Securityconfig securityconfig;
     @Override
     public String adminRegisterlogic(AdminDTO adminDTO){
-        Adminmodel savethedata=new Adminmodel(adminDTO.getAdminid(),adminDTO.getAdminname(),adminDTO.getAdminpassword());
+        Adminmodel savethedata=new Adminmodel(adminDTO.getAdminid(),adminDTO.getAdminname(),securityconfig.Ecry().encode(adminDTO.getAdminpassword()));
         adminRespostiory.save(savethedata);
         return "registration successfully";
     }
